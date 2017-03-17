@@ -1,2 +1,2 @@
-Day 2
-Session 3 - 18:31
+Async Redux
+ - Testing Redux: Updating the snapshot
