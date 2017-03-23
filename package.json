@@ -10,9 +10,10 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "watch": "npm run build -- --watch",
-    "test": "jest",
+    "test": "jest --verbose",
     "update-test": "npm run test -- -u",
-    "cover": "npm run test -- --coverage"
+    "cover": "npm run test -- --coverage",
+    "start": "NODE_ENV=server node server.js"
   },
   "dependencies": {
     "axios": "0.15.2",

@@ -3,17 +3,22 @@ const path = require('path')
 module.exports = {
     context: __dirname,             // whenever we run webpack, go back to root dir
     entry: './js/ClientApp.js',
-    devtool: 'eval',                 // debugging tool (source maps) use source-map to put whole source maps, eval is faster dirty way of doing it
+    //devtool: 'eval',                 // debugging tool (source maps) use source-map to put whole source maps, eval is faster dirty way of doing it
     output: {
         path: path.join(__dirname, '/public'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/public/'
     },
     devServer: {                     // webpack-dev-server includes watch
         publicPath: '/public/',       // when someones asks for css, is located in public (static directory)
         historyApiFallback: true
     },
     resolve: {
-        extensions: ['.js', '.json']
+        extensions: ['.js', '.json'],
+        alias: {
+          react: 'preact-compat',
+          'react-dom': 'preact-compat'
+        }
     },
     stats: {                        // stuff webpack to report on
         colors: true,
@@ -32,8 +37,11 @@ module.exports = {
                 test: /\.json$/,
                 loader: 'json-loader'
             },
-            {   
-                include: path.resolve(__dirname, 'js'),
+            {
+                include: [
+                  path.resolve(__dirname, 'js'),
+                  path.resolve('node_modules/preact-compat/src')
+                ],
                 test: /\.js$/,
                 loader: 'babel-loader'
             },
